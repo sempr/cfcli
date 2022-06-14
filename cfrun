@@ -1,0 +1,11 @@
+#!/bin/bash
+
+cmd=${1:-"./a.out"}
+
+for f in $(ls *.in); do
+    echo "Running $f"
+    Y=$(echo $f|tr -cd "[0-9]")
+    echo $Y
+    time $cmd <$f >$Y.usr
+    diff $Y.out $Y.usr
+done
